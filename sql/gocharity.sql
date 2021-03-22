@@ -39,10 +39,9 @@ CREATE TABLE `admin` (
 
 CREATE TABLE `akun` (
   `username` varchar(20) NOT NULL,
-  `password` varchar(20) DEFAULT NULL,
-  `email` varchar(40) DEFAULT NULL,
-  `no_hp` int(13) DEFAULT NULL,
-  `level` varchar(10) DEFAULT NULL
+  `password` char(32) NOT NULL,
+  `email` varchar(40) NOT NULL,
+  `no_hp` varchar(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -64,12 +63,12 @@ CREATE TABLE `cek` (
 
 CREATE TABLE `halaman_petisi` (
   `id_petisi` int(10) NOT NULL,
-  `judul_petisi` varchar(50) DEFAULT NULL,
-  `tgl_post` varchar(25) DEFAULT NULL,
-  `kebutuhan_dana` int(15) DEFAULT NULL,
-  `dana_terkumpul` int(15) DEFAULT NULL,
-  `deskripsi` varchar(255) DEFAULT NULL,
-  `durasi_hari` int(3) DEFAULT NULL
+  `judul_petisi` varchar(50) NOT NULL,
+  `tgl_post` date NOT NULL,
+  `kebutuhan_dana` int(15) NOT NULL,
+  `dana_terkumpul` int(15) NOT NULL,
+  `deskripsi` text NOT NULL,
+  `durasi_hari` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -102,9 +101,8 @@ CREATE TABLE `melihat` (
 
 CREATE TABLE `riwayat_transaksi` (
   `id_riwayat` int(10) NOT NULL,
-  `jumlah_dana` int(15) DEFAULT NULL,
-  `tgl_transaksi` varchar(20) DEFAULT NULL,
-  `id_petisi` int(10) NOT NULL,
+  `jumlah_dana` int(15) NOT NULL,
+  `tgl_transaksi` date NOT NULL,
   `nik` int(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -142,7 +140,7 @@ ALTER TABLE `akun`
 --
 ALTER TABLE `cek`
   ADD UNIQUE KEY `id_riwayat` (`id_riwayat`),
-  ADD UNIQUE KEY `id_petisi` (`id_petisi`);
+  ADD KEY `id_petisi` (`id_petisi`) USING BTREE;
 
 --
 -- Indexes for table `halaman_petisi`
@@ -154,23 +152,22 @@ ALTER TABLE `halaman_petisi`
 -- Indexes for table `manage`
 --
 ALTER TABLE `manage`
-  ADD UNIQUE KEY `username` (`username`),
-  ADD UNIQUE KEY `id_petisi` (`id_petisi`);
+  ADD UNIQUE KEY `id_petisi` (`id_petisi`),
+  ADD KEY `username` (`username`) USING BTREE;
 
 --
 -- Indexes for table `melihat`
 --
 ALTER TABLE `melihat`
-  ADD UNIQUE KEY `username` (`username`),
-  ADD UNIQUE KEY `id_petisi` (`id_petisi`);
+  ADD UNIQUE KEY `id_petisi` (`id_petisi`) USING BTREE,
+  ADD KEY `username` (`username`) USING BTREE;
 
 --
 -- Indexes for table `riwayat_transaksi`
 --
 ALTER TABLE `riwayat_transaksi`
   ADD PRIMARY KEY (`id_riwayat`),
-  ADD UNIQUE KEY `id_petisi` (`id_petisi`),
-  ADD UNIQUE KEY `nik` (`nik`);
+  ADD KEY `nik` (`nik`) USING BTREE;
 
 --
 -- Indexes for table `user`
@@ -203,40 +200,40 @@ ALTER TABLE `riwayat_transaksi`
 -- Constraints for table `admin`
 --
 ALTER TABLE `admin`
-  ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`username`) REFERENCES `akun` (`username`);
+  ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`username`) REFERENCES `akun` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `cek`
 --
 ALTER TABLE `cek`
-  ADD CONSTRAINT `cek_ibfk_1` FOREIGN KEY (`id_riwayat`) REFERENCES `riwayat_transaksi` (`id_riwayat`),
-  ADD CONSTRAINT `cek_ibfk_2` FOREIGN KEY (`id_petisi`) REFERENCES `halaman_petisi` (`id_petisi`);
+  ADD CONSTRAINT `cek_ibfk_2` FOREIGN KEY (`id_petisi`) REFERENCES `halaman_petisi` (`id_petisi`) ON DELETE CASCADE,
+  ADD CONSTRAINT `cek_ibfk_3` FOREIGN KEY (`id_riwayat`) REFERENCES `riwayat_transaksi` (`id_riwayat`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `manage`
 --
 ALTER TABLE `manage`
-  ADD CONSTRAINT `manage_ibfk_1` FOREIGN KEY (`username`) REFERENCES `akun` (`username`),
-  ADD CONSTRAINT `manage_ibfk_2` FOREIGN KEY (`id_petisi`) REFERENCES `halaman_petisi` (`id_petisi`);
+  ADD CONSTRAINT `manage_ibfk_2` FOREIGN KEY (`id_petisi`) REFERENCES `halaman_petisi` (`id_petisi`) ON DELETE CASCADE ON UPDATE RESTRICT,
+  ADD CONSTRAINT `manage_ibfk_3` FOREIGN KEY (`username`) REFERENCES `akun` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `melihat`
 --
 ALTER TABLE `melihat`
   ADD CONSTRAINT `melihat_ibfk_1` FOREIGN KEY (`username`) REFERENCES `akun` (`username`),
-  ADD CONSTRAINT `melihat_ibfk_2` FOREIGN KEY (`id_petisi`) REFERENCES `halaman_petisi` (`id_petisi`);
+  ADD CONSTRAINT `melihat_ibfk_2` FOREIGN KEY (`id_petisi`) REFERENCES `halaman_petisi` (`id_petisi`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `riwayat_transaksi`
 --
 ALTER TABLE `riwayat_transaksi`
-  ADD CONSTRAINT `riwayat_transaksi_ibfk_1` FOREIGN KEY (`nik`) REFERENCES `user` (`nik`);
+  ADD CONSTRAINT `riwayat_transaksi_ibfk_1` FOREIGN KEY (`nik`) REFERENCES `user` (`nik`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `user`
 --
 ALTER TABLE `user`
-  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`username`) REFERENCES `akun` (`username`);
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`username`) REFERENCES `akun` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
