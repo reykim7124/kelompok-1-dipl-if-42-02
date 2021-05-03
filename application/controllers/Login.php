@@ -15,12 +15,13 @@ class Login extends CI_Controller {
 	}
     // Fungsi untuk melakukan pengecekan form login
     public function login()
-    {
+    {	// Membuat form wajib diisi
         $this->form_validation->set_rules('username','username','required');
         $this->form_validation->set_rules('password','password','required');
-        // Jika form_validation false maka akan menampilkan form, jika true maka akan di cek formnya 
+        // Jika form_validation false maka akan menampilkan form
         if($this->form_validation->run() == false){
             $this->load->view('Login');
+	// Jika true maka akan di cek formnya 
         } else {
             $cek = $this->LoginModel->check_username();
             if($cek){
