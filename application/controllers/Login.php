@@ -1,18 +1,20 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-// class untuk Login 
+// class : Login
 class Login extends CI_Controller {
+    // Fungsi : Constructor
     // Fungsi untuk membangun objek
     public function __construct()
     {
         parent::__construct();
         $this->load->model('LoginModel');
     }
-
+	// Fungsi index, untuk melakukan view login
 	public function index()
 	{
         $this->load->view('Login');
 	}
+    // Fungsi : Login 	
     // Fungsi untuk melakukan pengecekan form login
     public function login()
     {	// Membuat form wajib diisi
