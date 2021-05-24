@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- Head mengimport bootstrap dan mendefinisikan metadata dokumen -->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,8 +10,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
+<!-- Head End -->
 
 <body>
+    <!-- Navbar aplikasi GoCharity -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">GoCharity</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,9 +30,13 @@
             </form>
         </div>
     </nav>
+    <!-- Navbar End -->
+
+    <!-- Desain Card untuk form login -->
     <div class="card" style="width: 18rem;">
         <div class="card-body">
             <h3>Login</h3>
+            <!--  Form Login -->
             <form method="POST" action="Login/login">
                 <div class="form-group">
                     <label for="username">Username</label>
@@ -42,9 +48,10 @@
                 </div>
                 <button type="submit" class="btn btn-primary" id="login">Login</button>
             </form>
+            <!--  Form Login end -->
             <a href="">Lupa password?</a>
         </div>
     </div>
+    <!--  Desain Card End -->
 </body>
-
 </html>
