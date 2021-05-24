@@ -34,11 +34,11 @@ class RegisterModel extends CI_model{
         $password = $this->input->post('password');
       
         // Membuat Query pengecekan username dan password
-        $this->db->where('username',$username);
-        $this->db->where('password',$password);
+        $this->db->where('username', $username);
+        $this->db->where('password', $password);
 
         // Menyimpan hasil query ke dalam variable result
-        $result = $this->db->get('admin') -> result_array();
+        $result = $this->db->get('admin') -> result_darray();
         
         // Jika username dan password tidak ditemukan maka return true, else false
         if(count($result)==0){
