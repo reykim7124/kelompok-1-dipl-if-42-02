@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 // Class Register
 // Class untuk melakukan navigasi pada proses registrasi
-class register extends CI_Controller {
+class Register extends CI_Controller {
 
     // Function __construct
     // Fungsi konstruktor pada class
@@ -11,14 +11,14 @@ class register extends CI_Controller {
     {
         parent::__construct();
         // Load model "registerModel"
-        $this->load->model('registerModel');
+        $this->load->model('RegisterModel');
     }
 
     // Function Index
     // Fungsi untuk menampilkan halaman register
 	public function index()
 	{
-        $this->load->view('register');
+        $this->load->view('Register');
 	}
 
     // Function register
@@ -31,16 +31,16 @@ class register extends CI_Controller {
         
         // Jika rule form tidak terpenuhi maka load ulang halaman register
         if($this->form_validation->run() == false){
-            $this->load->view('register');
+            $this->load->view('Register');
         } else { // Else lakukan registrasi ke database
-            $cek = $this->RegisModel->check_username();
+            $cek = $this->registerModel->check_username();
             if($cek){
                 $username = $this->input->post('username');
                 $this->session->set_userdata('username',$username);
                 $this->load->view('Berhasil');
             }
             else{
-                $this->load->view('register');
+                $this->load->view('Register');
             }
         }
     }

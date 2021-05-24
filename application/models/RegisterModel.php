@@ -1,7 +1,7 @@
 <?php
 // Class: registerModel
 // Class untuk melakukan pengecekan pada database user saat melakukan register
-class registerModel extends CI_model{
+class RegisterModel extends CI_model{
 
     // Function : check_username
 	// Fungsi untuk melakukan pengecekan username User saat login
