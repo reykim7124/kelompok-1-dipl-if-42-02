@@ -26,10 +26,11 @@ class LoginController extends CI_Controller {
             redirect(base_url('LoginController'));
 	    // Jika true maka akan di cek formnya 
         } else {
-            if($this->LoginModel->check_username()) {
-                $username = $this->input->post('username');
+            $username = $this->input->post('username');
+            $password = $this->input->post('password');
+            if($this->LoginModel->check_username($username, $password)) {
                 $this->session->set_userdata('username', $username);
-                if ($this->LoginModel->check_usernameA()) {
+                if ($this->LoginModel->check_usernameA($username, $password)) {
                     $this->session->set_userdata('role', 'admin');
                 }
                 redirect(base_url('LandingController'));
@@ -41,6 +42,6 @@ class LoginController extends CI_Controller {
 
     public function logout() {
         session_destroy();
-        redirect(base_url());
+        redirect(base_url("LoginController"));
     }
 }
