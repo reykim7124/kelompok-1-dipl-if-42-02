@@ -26,16 +26,16 @@ class RegisterController extends CI_Controller {
     // Fungsi untuk mmelakukan proses registrasi
     public function register()
     {
-        $content['main_view'] = 'RegisterView';
         // Menentukan rules dari form registrasi
         $this->form_validation->set_rules('username','username','required');
         $this->form_validation->set_rules('password','password','required');
         
         // Jika rule form tidak terpenuhi maka load ulang halaman register
         if($this->form_validation->run() == false){
-            $this->load->view('Body', $content);
+            redirect(base_url('RegisterController'));
         } else { // Else lakukan registrasi ke database
-            $cek = $this->RegisterModel->check_username();
+            $username = $this->input->post('username');
+            $cek = $this->RegisterModel->check_username($username);
             if($cek){
                 $data1 = [
                     'email' => $this->input->post('email', true),
@@ -50,12 +50,11 @@ class RegisterController extends CI_Controller {
                     'no_rekening' => $this->input->post('norek', true),
                     'nama' => $this->input->post('fullname', true)
                 ];
-                $this->db->insert('akun', $data1);
-                $this->db->insert('user', $data2);
+                $this->RegisterModel->add_user($data1, $data2);
                 redirect(base_url('LoginController'));
             }
             else{
-                $this->load->view('Body', $content);
+                redirect(base_url('RegisterController'));
             }
         }
     }

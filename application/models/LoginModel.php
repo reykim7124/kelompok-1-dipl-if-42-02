@@ -5,11 +5,7 @@ class LoginModel extends CI_model{
 	
 	// Function : check_username
 	// Fungsi untuk melakukan pengecekan username User saat login
-    public function check_username(){
-		// Mendapatkan value username dan password dari view
-        $username = $this->input->post('username');
-        $password = $this->input->post('password');
-		
+    public function check_username($username, $password){
 		// Membuat Query pengecekan username dan password
         $this->db->where('username',$username);
         $this->db->where('password',$password);
@@ -28,11 +24,7 @@ class LoginModel extends CI_model{
 	
 	// Function : check_usernameA
 	// Fungsi untuk melakukan pengecekan username Admin saat login
-    public function check_usernameA(){
-		// Mendapatkan value username dan password dari view
-        $username = $this->input->post('username');
-        $password = $this->input->post('password');
-		
+    public function check_usernameA($username, $password){		
 		// Membuat Query pengecekan username dan password
         $this->db->where('username', $username);
         $this->db->where('password', $password);
