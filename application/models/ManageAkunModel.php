@@ -6,8 +6,7 @@ class ManageAkun extends CI_model{
         return $this->db->get('akun')->result();
     }
 
-    public function deleteAkun(){
-        $username = $this->input->post('username');
+    public function deleteAkun($username){
         $this->db->where('username',$username);
         return $this->db->delete('akun');
     }
