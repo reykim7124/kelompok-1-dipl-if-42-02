@@ -1,4 +1,5 @@
-<div class="card" style="width: 18rem;">
+<div class="d-flex mt-5">
+<div class="card mx-auto" style="width: 18rem;">
     <div class="card-body">
         <h3>Register</h3>
         <!-- Form Register -->
@@ -37,4 +38,5 @@
             <button type="submit" class="btn btn-primary" id="register">Sign Up</button>
         </form>
     </div>
+</div>
 </div>
