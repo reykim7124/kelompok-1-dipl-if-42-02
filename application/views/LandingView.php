@@ -1,8 +1,10 @@
 <h1 class="text-center mt-3">Donasi Untuk Kesejahteraan Bersama</h1>
-<div class="d-flex my-3">
-    <a href="<?= base_url('ManagePetisiController') ?>" class="ml-auto mr-3">Manage Petisi</a>
-    <a href="<?= base_url('RiwayatTransaksiController') ?>">Riwayat Transaksi</a>
-</div>
+<?php if ($this->session->userdata('username')) { ?>
+    <div class="d-flex my-3">
+        <a href="<?= base_url('ManagePetisiController') ?>" class="ml-auto mr-3">Manage Petisi</a>
+        <a href="<?= base_url('RiwayatTransaksiController') ?>">Riwayat Transaksi</a>
+    </div>
+<?php } ?>
 <div id="container" class="d-flex justify-content-center flex-wrap align-items-stretch"></div>
 
 <script>
