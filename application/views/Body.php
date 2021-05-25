@@ -34,5 +34,7 @@
   </nav>
   <!-- Navbar End -->
   <?php $this->load->view($main_view); ?>
+
+  <?php var_dump($this->load->view($data)) ?>
 </body>
 </html>

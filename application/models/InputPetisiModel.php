@@ -1,6 +1,6 @@
 <?php
 
-class InputPetisi extends CI_model{
+class InputPetisiModel extends CI_model{
 	
     public function addPetisi(){
         $data = array(
