@@ -33,8 +33,10 @@
       </div>
   </nav>
   <!-- Navbar End -->
-  <?php $this->load->view($main_view); ?>
-
-  <?php var_dump($this->load->view($data)) ?>
+  <div class="d-flex justify-content-center">
+    <div style="max-width: 1600px;">
+      <?php $this->load->view($main_view); ?>
+    </div>
+  </div>
 </body>
 </html>
