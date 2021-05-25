@@ -6,18 +6,16 @@ class ManagePetisiController extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
-        $this->load->model('ManagePetisiModel');
+        $this->load->model('InputPetisiModel');
     }
 	
 	public function index()
 	{
         $content['main_view'] = 'LandingView';
-        $content['data'] = $this->ManagePetisiModel->getAllPetisi();
         $this->load->view('Body', $content);
 	}
 
-    public function editPetisi(){
-        $id = $this->input->post('id_petisi');
+    public function addPetisi(){
         $data = array(
             'judul_petisi' => $this->input->post('judul_petisi'),
             'tgl_post' => $this->input->post('tgl_post'),
@@ -26,11 +24,9 @@ class ManagePetisiController extends CI_Controller {
             'deskripsi' => $this->input->post('deskripsi'),
             'durasi' => $this->input->post('durasi')
         );
-        $this->ManagePetisiModel->editPetisi($id, $data);
+        );
+        $this->InputPetisiModel->addPetisi($data);
     }
 
-    public function deletePetisi(){
-        $id = $this->input->post('id_petisi');
-        $this->ManagePetisiModel->deletePetisi($id);
-    }
+    
 }
