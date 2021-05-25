@@ -1,6 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="d-flex justify-content-center flex-wrap">
+        <?= $this->load->view($data); ?>
         <?php for ($i=0; $i < 30; $i++) { ?>
             <div class="col-2 mx-1 my-3">
                 <div class="card" style="width: 18rem;">
