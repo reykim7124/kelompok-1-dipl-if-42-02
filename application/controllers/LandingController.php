@@ -16,6 +16,8 @@ class LandingController extends CI_Controller {
 	}
 
 	public function getAllPetisi() {
-		return json_encode($this->LandingModel->getAllPetisi())
+		$data = $this->LandingModel->getAllPetisi();
+		echo json_encode($data);
 	}
 }
+?>

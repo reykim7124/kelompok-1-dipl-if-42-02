@@ -1,19 +1,31 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="d-flex justify-content-center flex-wrap">
-        <?= $this->load->view($data); ?>
-        <?php for ($i=0; $i < 30; $i++) { ?>
-            <div class="col-2 mx-1 my-3">
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="..." alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-        <?php } ?>
-        </div>
-    </div>
+<h1 class="text-center mt-3">Donasi Untuk Kesejahteraan Bersama</h1>
+<div class="d-flex my-3">
+    <a href="<?= base_url('ManagePetisiController') ?>" class="ml-auto mr-3">Manage Petisi</a>
+    <a href="<?= base_url('RiwayatTransaksiController') ?>">Riwayat Transaksi</a>
 </div>
+<div id="container" class="d-flex justify-content-center flex-wrap align-items-stretch"></div>
+
+<script>
+    $(document).ready(function() {
+        async function getAllPetisi() {
+            const res = await fetch("<?= site_url('LandingController/getAllPetisi') ?>")
+            const data = await res.json()
+            const container = document.getElementById("container")
+            data.forEach(e => {
+                container.innerHTML +=
+                    `<div class="m-3 d-flex align-items-stretch">`+
+                        `<div class="card" style="width: 18rem;">`+
+                            `<img class="card-img-top" src="<?= base_url('src/mountains.jpg') ?>" alt="mountains">`+
+                            `<div class="card-body d-flex flex-column">`+
+                                `<h5 class="card-title">${e.judul_petisi}</h5>`+
+                                `<p class="card-text">${e.deskripsi}</p>`+
+                                `<a href="<?= base_url('HalamanPetisiController') ?>/${e.id_petisi}" class="btn btn-primary align-self-start mt-auto">Donasi Sekarang</a>`+
+                            `</div>`+
+                        `</div>`+
+                    `</div>`
+            });            
+        }
+
+        getAllPetisi()
+    })
+</script>
