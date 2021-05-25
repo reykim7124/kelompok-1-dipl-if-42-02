@@ -23,18 +23,24 @@ class LoginController extends CI_Controller {
         $this->form_validation->set_rules('password','password','required');
         // Jika form_validation false maka akan menampilkan form
         if($this->form_validation->run() == false){
-            $this->load->view('Body', $content);
-	// Jika true maka akan di cek formnya 
+            redirect(base_url('LoginController'));
+	    // Jika true maka akan di cek formnya 
         } else {
-            $cek = $this->LoginModel->check_username();
-            if($cek){
+            if($this->LoginModel->check_username()) {
                 $username = $this->input->post('username');
-                $this->session->set_userdata('username',$username);
-                $this->load->view('Berhasil');
-            }
-            else{
-                $this->load->view('Body', $content);
+                $this->session->set_userdata('username', $username);
+                if ($this->LoginModel->check_usernameA()) {
+                    $this->session->set_userdata('role', 'admin');
+                }
+                redirect(base_url('LandingController'));
+            } else {
+                redirect(base_url('LoginController'));
             }
         }
+    }
+
+    public function logout() {
+        session_destroy();
+        redirect(base_url());
     }
 }

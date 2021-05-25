@@ -34,17 +34,22 @@ class LoginModel extends CI_model{
         $password = $this->input->post('password');
 		
 		// Membuat Query pengecekan username dan password
-        $this->db->where('username',$username);
-        $this->db->where('password',$password);
+        $this->db->where('username', $username);
+        $this->db->where('password', $password);
 		
 		// Menyimpan hasil query ke dalam variable result
-        $result = $this->db->get('admin') -> result_array();
+        $result = $this->db->get('akun') -> result_array();
 		
 		// Jika username dan password ditemukan maka return true, else false
-        if(count($result)>0){
-            return true;
-        }
-        else{
+        if(count($result) > 0) {
+            $this->db->where('username', $username);
+            $result = $this->db->get('admin') -> result_array();
+            if (count($result) > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
             return false;
         }
     }

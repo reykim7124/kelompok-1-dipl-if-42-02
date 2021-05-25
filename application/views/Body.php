@@ -20,13 +20,15 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-
-          </ul>
+          <ul class="navbar-nav mr-auto"></ul>
           <form class="form-inline my-2 my-lg-0">
               <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
+              <?php if ($this->session->userdata("username") == '') { ?>
+                  <a class="badge badge-success my-2 my-sm-0 p-2 text-white" href="<?= base_url('LoginController') ?>">Login</a>
+               <?php } else { ?>
+                  <span><?= $this->session->userdata("username") ?></span>
+                  <a class="badge badge-success my-2 my-sm-0 p-2 text-white ml-2" href="<?= site_url('LoginController/logout') ?>">Log out</a>
+                <?php } ?>
           </form>
       </div>
   </nav>
