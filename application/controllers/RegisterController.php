@@ -52,7 +52,7 @@ class RegisterController extends CI_Controller {
                 ];
                 $this->db->insert('akun', $data1);
                 $this->db->insert('user', $data2);
-                redirect('LoginController');
+                redirect(base_url('LoginController'));
             }
             else{
                 $this->load->view('Body', $content);

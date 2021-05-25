@@ -18,7 +18,7 @@ class RegisterModel extends CI_model{
         $result = $this->db->get('akun') -> result_array();
 
         // Jika username dan password tidak ditemukan maka return true, else false
-        if(count($result)==0){
+        if(count($result) == 0){
             return true;
         }
         else{
@@ -38,10 +38,10 @@ class RegisterModel extends CI_model{
         $this->db->where('password', $password);
 
         // Menyimpan hasil query ke dalam variable result
-        $result = $this->db->get('admin') -> result_darray();
+        $result = $this->db->get('akun') -> result_array();
         
         // Jika username dan password tidak ditemukan maka return true, else false
-        if(count($result)==0){
+        if(count($result) == 0){
             return true;
         }
         else{
