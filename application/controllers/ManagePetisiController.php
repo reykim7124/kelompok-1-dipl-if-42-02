@@ -11,26 +11,16 @@ class ManagePetisiController extends CI_Controller {
 	
 	public function index()
 	{
-        $content['main_view'] = 'LandingView';
-        $content['data'] = $this->ManagePetisiModel->getAllPetisi();
+        $content['main_view'] = 'ManagePetisiView';
         $this->load->view('Body', $content);
 	}
 
-    public function editPetisi(){
-        $id = $this->input->post('id_petisi');
-        $data = array(
-            'judul_petisi' => $this->input->post('judul_petisi'),
-            'tgl_post' => $this->input->post('tgl_post'),
-            'kebutuhan_dana' => $this->input->post('kebutuhan_dana'),
-            'dana_terkumpul' => $this->input->post('dana_terkumpul'),
-            'deskripsi' => $this->input->post('deskripsi'),
-            'durasi' => $this->input->post('durasi')
-        );
-        $this->ManagePetisiModel->editPetisi($id, $data);
-    }
-
-    public function deletePetisi(){
-        $id = $this->input->post('id_petisi');
+    public function deletePetisi($id){
         $this->ManagePetisiModel->deletePetisi($id);
     }
+
+    public function getAllPetisi() {
+        echo json_encode($this->ManagePetisiModel->getAllPetisi());
+    }
 }
+?>

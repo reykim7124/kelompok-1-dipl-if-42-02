@@ -15,6 +15,19 @@ class ManagePetisiController extends CI_Controller {
         $this->load->view('Body', $content);
 	}
 
+    public function editPetisi(){
+        $id = $this->input->post('id_petisi');
+        $data = array(
+            'judul_petisi' => $this->input->post('judul_petisi'),
+            'tgl_post' => $this->input->post('tgl_post'),
+            'kebutuhan_dana' => $this->input->post('kebutuhan_dana'),
+            'dana_terkumpul' => $this->input->post('dana_terkumpul'),
+            'deskripsi' => $this->input->post('deskripsi'),
+            'durasi' => $this->input->post('durasi')
+        );
+        $this->ManagePetisiModel->editPetisi($id, $data);
+    }
+
     public function addPetisi(){
         $data = array(
             'judul_petisi' => $this->input->post('judul_petisi'),
