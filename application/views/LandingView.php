@@ -19,12 +19,14 @@
                 container.innerHTML +=
                     `<div class="m-3 d-flex align-items-stretch">`+
                         `<div class="card" style="width: 18rem;">`+
-                            `<img class="card-img-top" src="<?= base_url('src/mountains.jpg') ?>" alt="mountains">`+
-                            `<div class="card-body d-flex flex-column">`+
+                            `<div class="card-body">`+
                                 `<h5 class="card-title">${e.judul_petisi}</h5>`+
+                            `</div>`+
+                            `<img class="card-img-bottom" src="<?= base_url('src/mountains.jpg') ?>" alt="mountains">`+
+                            `<div class="card-body d-flex flex-column">`+
                                 `<p class="card-text">${e.deskripsi}</p>`+
                                 `<a href="<?= base_url('HalamanPetisiController') ?>/${e.id_petisi}" class="btn btn-primary align-self-start mt-auto">Donasi Sekarang</a>`+
-                            `</div>`+
+                            `</div>`+    
                         `</div>`+
                     `</div>`
             });            
