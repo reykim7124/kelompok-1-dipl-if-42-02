@@ -6,7 +6,7 @@ class ManagePetisiModel extends CI_model{
         return $this->db->get('halaman_petisi')->result();
     }
 
-    public function deletePetisi(){
+    public function deletePetisi($id){
         $this->db->where('id_petisi',$id);
         return $this->db->delete('halaman_petisi');
     }
