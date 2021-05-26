@@ -8,7 +8,7 @@ $(document).ready(function() {
         const id = window.location.pathname[window.location.pathname.length - 1]
         const res = await fetch(`<?= site_url('HalamanPetisiController/getPetisi/') ?>${id}`)
         const [ data ] = await res.json()
-        const currency = new Intl.NumberFormat('en-ID', { style: 'currency', currency: 'IDR' })
+        const currency = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' })
         console.log(data)
         const container = document.getElementById("container")
         // data.forEach(e => {
