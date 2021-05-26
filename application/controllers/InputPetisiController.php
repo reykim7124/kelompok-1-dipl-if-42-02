@@ -24,9 +24,7 @@ class ManagePetisiController extends CI_Controller {
             'deskripsi' => $this->input->post('deskripsi'),
             'durasi' => $this->input->post('durasi')
         );
-        );
         $this->InputPetisiModel->addPetisi($data);
     }
-
-    
 }
+?>
