@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class ModelDetailPetisi extends CI_Model {
+class HalamanPetisiModel extends CI_Model {
     
     public function getPetisi($table) {
         
