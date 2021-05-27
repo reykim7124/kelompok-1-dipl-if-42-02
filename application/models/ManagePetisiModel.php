@@ -2,8 +2,17 @@
 
 class ManagePetisiModel extends CI_model{
 	
-    public function getAllPetisi(){
-        return $this->db->get('halaman_petisi')->result();
+
+    public funtion joinHalamanMelihat(){
+        $this->db->select('*');
+        $this->db->from('melihat');
+        $this->db->join('halaman_petisi','melihat.id_petisi = halaman_petisi.id_petisi','LEFT');      
+        $query = $this->db->get();
+        return $query;
+    }
+    public function getAllPetisi($username){
+        $this->db->where('username',$username);
+        return $this->db->get(joinHalamanMelihat())->result();
     }
 
     public function deletePetisi($id){
