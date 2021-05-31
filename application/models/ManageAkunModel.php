@@ -11,5 +11,5 @@ class ManageAkun extends CI_model{
         return $this->db->delete('akun');
     }
 		
-
+}
 ?>
