@@ -29,7 +29,8 @@ class ManagePetisiController extends CI_Controller {
     }
 
     public function addPetisi(){
-        $data = array(
+        $data_1 = array(
+            'id_petisi' => $this->input->post('id_petisi'),
             'judul_petisi' => $this->input->post('judul_petisi'),
             'tgl_post' => $this->input->post('tgl_post'),
             'kebutuhan_dana' => $this->input->post('kebutuhan_dana'),
@@ -37,7 +38,14 @@ class ManagePetisiController extends CI_Controller {
             'deskripsi' => $this->input->post('deskripsi'),
             'durasi' => $this->input->post('durasi')
         );
-        $this->InputPetisiModel->addPetisi($data);
+        
+        $data_2 = array(
+            'id_petisi' => $this->input->post('id_petisi'),
+            'username' => $this->input->post('username')
+        );
+        $this->InputPetisiModel->addPetisiHalamanPetisi($data_1);
+        $this->InputPetisiModel->addPetisiMelihat($data_2);
     }
+
 }
 ?>
