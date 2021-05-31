@@ -19,8 +19,8 @@ class ManagePetisiController extends CI_Controller {
         $this->ManagePetisiModel->deletePetisi($id);
     }
 
-    public function getAllPetisi() {
-        echo json_encode($this->ManagePetisiModel->getAllPetisi('reykim'));
+    public function getAllPetisi($username) {
+        echo json_encode($this->ManagePetisiModel->getAllPetisi($username));
     }
 }
 ?>

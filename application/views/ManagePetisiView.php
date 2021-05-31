@@ -14,7 +14,7 @@
 <script>
     $(document).ready(function() {
         async function getAllPetisi() {
-            console.log("<?= site_url('ManagePetisiController/getAllPetisi') ?>")
+            console.log("<?= site_url('ManagePetisiController/getAllPetisi/' . $this->session->userdata('username')) ?>")
             const res = await fetch("<?= site_url('ManagePetisiController/getAllPetisi/'.$this->session->userdata('username')) ?>")
             const data = await res.json()
             const container = document.getElementById("container")
