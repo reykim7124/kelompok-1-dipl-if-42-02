@@ -2,8 +2,8 @@
 -- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 21, 2021 at 07:04 AM
+-- Host: localhost
+-- Generation Time: May 26, 2021 at 05:34 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -31,6 +31,15 @@ CREATE TABLE `admin` (
   `username` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`username`) VALUES
+('reykim'),
+('tiwa'),
+('wisnu');
+
 -- --------------------------------------------------------
 
 --
@@ -43,6 +52,17 @@ CREATE TABLE `akun` (
   `email` varchar(40) NOT NULL,
   `no_hp` varchar(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `akun`
+--
+
+INSERT INTO `akun` (`username`, `password`, `email`, `no_hp`) VALUES
+('iwi', '123', 'iwi@gmail.com', '123'),
+('owo', '123', 'owo@hotmail.com', '081292374592'),
+('reykim', '12347', 'reykim@gmail.com', '0833'),
+('tiwa', '12345', 'tiwa@gmail.com', '08211'),
+('wisnu', '12346', 'wisnu@gmail.com', '08222');
 
 -- --------------------------------------------------------
 
@@ -71,6 +91,15 @@ CREATE TABLE `halaman_petisi` (
   `durasi_hari` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `halaman_petisi`
+--
+
+INSERT INTO `halaman_petisi` (`id_petisi`, `judul_petisi`, `tgl_post`, `kebutuhan_dana`, `dana_terkumpul`, `deskripsi`, `durasi_hari`) VALUES
+(1, 'Kebakaran di Bandung ', '2021-03-01', 50000000, 25000000, 'Kebakaran di Bandung terjadi karena adanya konsleting listrik.', 25),
+(2, 'Andi pengidap Gizi Buruk', '2021-03-05', 20000000, 15000000, '.', 15),
+(3, 'Kanker Darah', '2021-03-03', 120000000, 100000000, '.', 30);
+
 -- --------------------------------------------------------
 
 --
@@ -82,6 +111,15 @@ CREATE TABLE `manage` (
   `id_petisi` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `manage`
+--
+
+INSERT INTO `manage` (`username`, `id_petisi`) VALUES
+('reykim', 1),
+('tiwa', 2),
+('wisnu', 3);
+
 -- --------------------------------------------------------
 
 --
@@ -92,6 +130,15 @@ CREATE TABLE `melihat` (
   `username` varchar(20) NOT NULL,
   `id_petisi` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `melihat`
+--
+
+INSERT INTO `melihat` (`username`, `id_petisi`) VALUES
+('reykim', 1),
+('tiwa', 2),
+('wisnu', 3);
 
 -- --------------------------------------------------------
 
@@ -118,6 +165,14 @@ CREATE TABLE `user` (
   `no_rekening` varchar(20) NOT NULL,
   `nama` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`nik`, `username`, `no_rekening`, `nama`) VALUES
+(123, 'iwi', '123', 'iwi'),
+(1301180000, 'owo', '12378901278', 'daffa hilmy fadhlurrohman');
 
 --
 -- Indexes for dumped tables
@@ -184,13 +239,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `halaman_petisi`
 --
 ALTER TABLE `halaman_petisi`
-  MODIFY `id_petisi` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_petisi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `riwayat_transaksi`
 --
 ALTER TABLE `riwayat_transaksi`
-  MODIFY `id_riwayat` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_riwayat` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- Constraints for dumped tables
@@ -213,7 +268,7 @@ ALTER TABLE `cek`
 -- Constraints for table `manage`
 --
 ALTER TABLE `manage`
-  ADD CONSTRAINT `manage_ibfk_2` FOREIGN KEY (`id_petisi`) REFERENCES `halaman_petisi` (`id_petisi`) ON DELETE CASCADE ON UPDATE RESTRICT,
+  ADD CONSTRAINT `manage_ibfk_2` FOREIGN KEY (`id_petisi`) REFERENCES `halaman_petisi` (`id_petisi`) ON DELETE CASCADE,
   ADD CONSTRAINT `manage_ibfk_3` FOREIGN KEY (`username`) REFERENCES `akun` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
