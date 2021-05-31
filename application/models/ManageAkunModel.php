@@ -1,6 +1,6 @@
 <?php
 
-class ManageAkun extends CI_model{
+class ManageAkunModel extends CI_model{
 	
     public function getAllAkun(){
         return $this->db->get('akun')->result();
@@ -11,5 +11,5 @@ class ManageAkun extends CI_model{
         return $this->db->delete('akun');
     }
 		
-
+}
 ?>
