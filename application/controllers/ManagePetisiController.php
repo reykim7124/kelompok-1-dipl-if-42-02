@@ -20,7 +20,7 @@ class ManagePetisiController extends CI_Controller {
     }
 
     public function getAllPetisi() {
-        echo json_encode($this->ManagePetisiModel->getAllPetisi());
+        echo json_encode($this->ManagePetisiModel->getAllPetisi('reykim'));
     }
 }
 ?>
