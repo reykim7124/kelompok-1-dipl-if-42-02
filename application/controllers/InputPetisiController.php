@@ -29,8 +29,9 @@ class ManagePetisiController extends CI_Controller {
     }
 
     public function addPetisi(){
+        $id_petisi = $this->InputPetisiModel->getLastIdPetisi()+1;
         $data_1 = array(
-            'id_petisi' => $this->input->post('id_petisi'),
+            'id_petisi' =>  $id_petisi,
             'judul_petisi' => $this->input->post('judul_petisi'),
             'tgl_post' => $this->input->post('tgl_post'),
             'kebutuhan_dana' => $this->input->post('kebutuhan_dana'),
@@ -40,7 +41,7 @@ class ManagePetisiController extends CI_Controller {
         );
         
         $data_2 = array(
-            'id_petisi' => $this->input->post('id_petisi'),
+            'id_petisi' =>  $id_petisi,
             'username' => $this->input->post('username')
         );
         $this->InputPetisiModel->addPetisiHalamanPetisi($data_1);
