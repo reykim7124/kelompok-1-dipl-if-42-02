@@ -1,3 +1,4 @@
+<?php if ($this->session->userdata('username') != TRUE) { redirect(base_url()); } ?>
 <div id="container" class="d-flex justify-content-center flex-wrap align-items-stretch">
   <div class="m-3 d-flex align-items-stretch">
     <div class="card" style="width: 18rem;">

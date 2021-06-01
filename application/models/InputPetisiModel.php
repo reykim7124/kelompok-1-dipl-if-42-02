@@ -11,5 +11,9 @@ class InputPetisiModel extends CI_model{
     public function getLastIdPetisi(){
         return $this->db->select("id_petisi")->limit(1)->order_by('id_petisi',"DESC")->get("halaman_petisi")->row()->id_petisi + 1;
     }
+
+    public function getPetisiById($id) {
+        return $this->db->select()->where('id_petisi', $id)->get("halaman_petisi")->row();
+    }
 }
 ?>
