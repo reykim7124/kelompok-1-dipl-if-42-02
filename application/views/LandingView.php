@@ -25,7 +25,7 @@
                             `<img class="card-img-bottom" src="<?= base_url('src/mountains.jpg') ?>" alt="mountains">`+
                             `<div class="card-body d-flex flex-column">`+
                                 `<p class="card-text">${e.deskripsi}</p>`+
-                                `<a href="<?= base_url('HalamanPetisiController/index/') ?>/${e.id_petisi}" class="btn btn-primary align-self-start mt-auto">Donasi Sekarang</a>`+
+                                `<a href="<?= base_url('HalamanPetisiController/index/') ?>${e.id_petisi}" class="btn btn-primary align-self-start mt-auto">Donasi Sekarang</a>`+
                             `</div>`+    
                         `</div>`+
                     `</div>`
