@@ -1,3 +1,4 @@
+<?php if ($this->session->userdata('username') != TRUE) { redirect(base_url()); } ?>
 <div class="mt-5">
   <h1 class="text-center mb-5"><?= isset($data) ? "Edit" : "Tambah" ?> Petisi</h1>
   <form action="<?= isset($data) ? site_url('InputPetisiController/editPetisi/'.$data) : site_url('InputPetisiController/addPetisi/'.$this->session->userdata('username')) ?>" method="post">
