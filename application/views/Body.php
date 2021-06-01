@@ -36,7 +36,7 @@
 
   <div class="d-flex justify-content-center">
     <div style="max-width: 1600px;">
-      <?php $this->load->view($main_view); ?>
+      <?php isset($data) ? $this->load->view($main_view, $data) : $this->load->view($main_view); ?>
     </div>
   </div>
 
