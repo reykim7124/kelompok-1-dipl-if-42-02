@@ -1,6 +1,6 @@
 <?php
 
-class ManageAkun extends CI_model{
+class ManageAkunModel extends CI_model{
 	
     public function getAllAkun(){
         return $this->db->get('akun')->result();

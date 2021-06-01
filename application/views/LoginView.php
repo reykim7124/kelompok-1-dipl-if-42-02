@@ -16,7 +16,7 @@
                 <button type="submit" class="btn btn-primary" id="login">Login</button>
             </form>
             <!--  Form Login end -->
-            <div class="d-flex justify-content-between mt-2dddddddddddddddddddddddddddddddddddddd">
+            <div class="d-flex justify-content-between mt-2">
                 <span class="text-primary">Lupa password?</span>
                 <a href="<?= base_url('RegisterController') ?>" class="text-primary">Daftar akun</a>
             </div>
