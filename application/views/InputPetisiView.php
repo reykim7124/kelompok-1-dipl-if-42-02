@@ -38,7 +38,7 @@
     </div>
     <?php } ?>
     <div class="mb-3 d-flex justify-content-end">
-      <a href="<?= base_url('ManagePetisiController') ?>" class="btn btn-primary mr-2">Cancel</a>
+      <a href="<?= base_url('ManagePetisiController') ?>" class="btn btn-primary me-2">Cancel</a>
       <input type="submit" class="btn btn-primary" />
     </div>
   </form>

@@ -12,15 +12,12 @@ class ManagePetisiController extends CI_Controller {
 	public function index()
 	{
         $content['main_view'] = 'ManagePetisiView';
+        $content['data'] = $this->ManagePetisiModel->getAllPetisi($this->session->userdata('username'));
         $this->load->view('Body', $content);
 	}
 
     public function deletePetisi($id){
         $this->ManagePetisiModel->deletePetisi($id);
-    }
-
-    public function getAllPetisi($username) {
-        echo json_encode($this->ManagePetisiModel->getAllPetisi($username));
     }
 }
 ?>
