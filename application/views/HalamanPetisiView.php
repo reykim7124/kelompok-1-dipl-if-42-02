@@ -29,8 +29,8 @@ $(document).ready(function() {
                 `<progress min="0" max="${(data.kebutuhan_dana / data.kebutuhan_dana) * 100}" value="${(data.dana_terkumpul / data.kebutuhan_dana) * 100}" style="width: 75%; height: 30px;"></progress>`+
                 `<p>${data.deskripsi}</p>` +
             `</div>`
-        const button = addDate(data.tgl_post, data.durasi_hari) != new Date().toLocaleDateString('id', { day: 'numeric', month: 'long', year: 'numeric' }) 
-                    ? `<a class="btn btn-primary ml-auto mt-auto" href="#">Donate</a>` : ``
+        const button = addDate(data.tgl_post, data.durasi_hari) < new Date().toLocaleDateString('id', { day: 'numeric', month: 'long', year: 'numeric' }) 
+                    ? `<a class="btn btn-primary ms-auto mt-auto" href="#">Donate</a>` : ``
         $(".content").append(button)
     }
 

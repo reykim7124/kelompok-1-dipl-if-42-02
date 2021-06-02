@@ -15,7 +15,6 @@
 <script>
     $(document).ready(function() {
         async function getAllPetisi() {
-            console.log("<?= site_url('ManagePetisiController/getAllPetisi/' . $this->session->userdata('username')) ?>")
             const res = await fetch("<?= site_url('ManagePetisiController/getAllPetisi/'.$this->session->userdata('username')) ?>")
             const data = await res.json()
             const container = document.getElementById("container")
@@ -27,7 +26,7 @@
                                 `<a href="<?= base_url("InputPetisiController/edit") ?>/${e.id_petisi}">`+
                                     `<i class="fas fa-edit"></i>`+
                                 `</a>`+
-                                `<button type="button" data-id="${e.id_petisi}" data-name="${e.judul_petisi}" style="border: none; outline: none; background: none; cursor: pointer;" class="text-primary mx-1" data-toggle="modal" data-target="#deleteModal">`+
+                                `<button type="button" data-id="${e.id_petisi}" data-name="${e.judul_petisi}" style="border: none; outline: none; background: none; cursor: pointer;" class="text-primary mx-1" data-bs-toggle="modal" data-bs-target="#deleteModal">`+
                                     `<i class="fas fa-times"></i>`+
                                 `</button>`+
                             `</div>`+
