@@ -32,6 +32,8 @@ class LoginController extends CI_Controller {
                 $this->session->set_userdata('username', $username);
                 if ($this->LoginModel->check_usernameA($username, $password)) {
                     $this->session->set_userdata('role', 'admin');
+                } else {
+                    $this->session->set_userdata('role', 'user');
                 }
                 redirect(base_url('LandingController'));
             } else {

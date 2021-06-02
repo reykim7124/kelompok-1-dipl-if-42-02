@@ -5,7 +5,7 @@ class ManagePetisiModel extends CI_model {
         $this->db->from('melihat');
         $this->db->join('halaman_petisi','melihat.id_petisi = halaman_petisi.id_petisi','LEFT');
         $this->db->where('username', $username);
-        return $this->db->get()->result();
+        return $this->db->get()->result_array();
     }
 
     public function deletePetisi($id) {
