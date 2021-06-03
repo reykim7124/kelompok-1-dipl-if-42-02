@@ -1,3 +1,4 @@
+<?php if ($this->session->userdata('username') == TRUE) { redirect(base_url()); } ?>
 <div class="d-flex mt-5">
 <div class="card mx-auto" style="width: 18rem;">
     <div class="card-body">
