@@ -13,6 +13,14 @@ class HalamanPetisiController extends CI_Controller {
         $content['data'] = $this->HalamanPetisiModel->detailPetisi('halaman_petisi', $where);
         $this->load->view('Body', $content);
     }
+
+    public function donasi($id) {
+        $where = array('id_petisi' => $id);
+        $content['main_view'] = 'DonasiView';
+        $content['data'] = $id;
+        $content['title'] = $this->HalamanPetisiModel->detailPetisi('halaman_petisi', $where)->judul_petisi;
+        $this->load->view('Body', $content);
+    }
 }
 
 ?>
