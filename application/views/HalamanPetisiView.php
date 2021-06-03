@@ -22,9 +22,9 @@
             <?php 
                 $close = date('Y-m-d', strtotime($data->tgl_post.' + '.$data->durasi_hari.' days'));
                 $now = date('Y-m-d');
-                if ($now < $close) {
+                if ($now < $close && $this->session->userdata('role') == 'user') {
             ?>
-                <a class="btn btn-primary ms-auto mt-auto" href="#">Donate</a>
+                <a class="btn btn-primary ms-auto mt-auto" href="<?= base_url('HalamanPetisiController/donasi/'.$data->id_petisi) ?>">Donate</a>
             <?php } ?>
         </div>
     </div>

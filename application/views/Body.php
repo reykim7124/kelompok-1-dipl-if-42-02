@@ -31,7 +31,9 @@
                         if ($this->session->userdata("role") == 'admin') {
                         ?>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><?= $this->session->userdata("username") ?></a>
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <?= $this->session->userdata("username") ?>
+                                </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="<?= base_url('ManageAkunController') ?>">Kelola Akun</a></li>
                                 </ul>
