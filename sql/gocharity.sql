@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 26, 2021 at 05:34 AM
+-- Generation Time: Jun 05, 2021 at 03:26 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -36,7 +36,6 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`username`) VALUES
-('reykim'),
 ('tiwa'),
 ('wisnu');
 
@@ -58,8 +57,6 @@ CREATE TABLE `akun` (
 --
 
 INSERT INTO `akun` (`username`, `password`, `email`, `no_hp`) VALUES
-('iwi', '123', 'iwi@gmail.com', '123'),
-('owo', '123', 'owo@hotmail.com', '081292374592'),
 ('reykim', '12347', 'reykim@gmail.com', '0833'),
 ('tiwa', '12345', 'tiwa@gmail.com', '08211'),
 ('wisnu', '12346', 'wisnu@gmail.com', '08222');
@@ -96,9 +93,8 @@ CREATE TABLE `halaman_petisi` (
 --
 
 INSERT INTO `halaman_petisi` (`id_petisi`, `judul_petisi`, `tgl_post`, `kebutuhan_dana`, `dana_terkumpul`, `deskripsi`, `durasi_hari`) VALUES
-(1, 'Kebakaran di Bandung ', '2021-03-01', 50000000, 25000000, 'Kebakaran di Bandung terjadi karena adanya konsleting listrik.', 25),
-(2, 'Andi pengidap Gizi Buruk', '2021-03-05', 20000000, 15000000, '.', 15),
-(3, 'Kanker Darah', '2021-03-03', 120000000, 100000000, '.', 30);
+(1, 'petisi 1', '2021-06-05', 1000000, 0, 'petisi 1', 18806),
+(2, 'petisi 2', '2021-06-05', 2000000, 0, 'petisi 2', 18807);
 
 -- --------------------------------------------------------
 
@@ -116,9 +112,8 @@ CREATE TABLE `manage` (
 --
 
 INSERT INTO `manage` (`username`, `id_petisi`) VALUES
-('reykim', 1),
-('tiwa', 2),
-('wisnu', 3);
+('tiwa', 1),
+('wisnu', 2);
 
 -- --------------------------------------------------------
 
@@ -137,8 +132,7 @@ CREATE TABLE `melihat` (
 
 INSERT INTO `melihat` (`username`, `id_petisi`) VALUES
 ('reykim', 1),
-('tiwa', 2),
-('wisnu', 3);
+('reykim', 2);
 
 -- --------------------------------------------------------
 
@@ -150,7 +144,7 @@ CREATE TABLE `riwayat_transaksi` (
   `id_riwayat` int(10) NOT NULL,
   `jumlah_dana` int(15) NOT NULL,
   `tgl_transaksi` date NOT NULL,
-  `nik` int(16) NOT NULL
+  `username` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -171,8 +165,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`nik`, `username`, `no_rekening`, `nama`) VALUES
-(123, 'iwi', '123', 'iwi'),
-(1301180000, 'owo', '12378901278', 'daffa hilmy fadhlurrohman');
+(2315534, 'reykim', '02384028403', 'Muhammad Rayhan Hakim');
 
 --
 -- Indexes for dumped tables
@@ -222,14 +215,13 @@ ALTER TABLE `melihat`
 --
 ALTER TABLE `riwayat_transaksi`
   ADD PRIMARY KEY (`id_riwayat`),
-  ADD KEY `nik` (`nik`) USING BTREE;
+  ADD KEY `username` (`username`);
 
 --
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`nik`),
-  ADD UNIQUE KEY `username` (`username`);
+  ADD PRIMARY KEY (`username`) USING BTREE;
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -261,28 +253,28 @@ ALTER TABLE `admin`
 -- Constraints for table `cek`
 --
 ALTER TABLE `cek`
-  ADD CONSTRAINT `cek_ibfk_2` FOREIGN KEY (`id_petisi`) REFERENCES `halaman_petisi` (`id_petisi`) ON DELETE CASCADE,
-  ADD CONSTRAINT `cek_ibfk_3` FOREIGN KEY (`id_riwayat`) REFERENCES `riwayat_transaksi` (`id_riwayat`) ON DELETE CASCADE;
+  ADD CONSTRAINT `cek_ibfk_3` FOREIGN KEY (`id_riwayat`) REFERENCES `riwayat_transaksi` (`id_riwayat`) ON DELETE CASCADE,
+  ADD CONSTRAINT `cek_ibfk_4` FOREIGN KEY (`id_petisi`) REFERENCES `halaman_petisi` (`id_petisi`);
 
 --
 -- Constraints for table `manage`
 --
 ALTER TABLE `manage`
-  ADD CONSTRAINT `manage_ibfk_2` FOREIGN KEY (`id_petisi`) REFERENCES `halaman_petisi` (`id_petisi`) ON DELETE CASCADE,
-  ADD CONSTRAINT `manage_ibfk_3` FOREIGN KEY (`username`) REFERENCES `akun` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `manage_ibfk_4` FOREIGN KEY (`id_petisi`) REFERENCES `halaman_petisi` (`id_petisi`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `manage_ibfk_5` FOREIGN KEY (`username`) REFERENCES `admin` (`username`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `melihat`
 --
 ALTER TABLE `melihat`
-  ADD CONSTRAINT `melihat_ibfk_1` FOREIGN KEY (`username`) REFERENCES `akun` (`username`),
-  ADD CONSTRAINT `melihat_ibfk_2` FOREIGN KEY (`id_petisi`) REFERENCES `halaman_petisi` (`id_petisi`) ON DELETE CASCADE;
+  ADD CONSTRAINT `melihat_ibfk_2` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `melihat_ibfk_3` FOREIGN KEY (`id_petisi`) REFERENCES `halaman_petisi` (`id_petisi`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `riwayat_transaksi`
 --
 ALTER TABLE `riwayat_transaksi`
-  ADD CONSTRAINT `riwayat_transaksi_ibfk_1` FOREIGN KEY (`nik`) REFERENCES `user` (`nik`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `riwayat_transaksi_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `user`
