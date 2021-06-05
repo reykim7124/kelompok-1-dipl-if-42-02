@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class ManagePetisiController extends CI_Controller {
+class ManageAkunController extends CI_Controller {
 	
 	public function __construct()
     {
@@ -11,13 +11,12 @@ class ManagePetisiController extends CI_Controller {
 	
 	public function index()
 	{
-        $content['main_view'] = 'LandingView';
+        $content['main_view'] = 'ManageAkunView';
         $content['data'] = $this->ManageAkunModel->getAllAkun();
         $this->load->view('Body', $content);
 	}
 
-    public function deleteAkun(){
-        $username = $this->input->post('username');
+    public function deleteAkun($username){
         $this->ManageAkunModel->deleteAkun($username);
     }
 }

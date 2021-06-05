@@ -28,10 +28,14 @@ class LoginController extends CI_Controller {
         } else {
             $username = $this->input->post('username');
             $password = $this->input->post('password');
-            if($this->LoginModel->check_username($username, $password)) {
+            $r = $this->LoginModel->check_username($username, $password);
+            if($r[0]) {
                 $this->session->set_userdata('username', $username);
                 if ($this->LoginModel->check_usernameA($username, $password)) {
                     $this->session->set_userdata('role', 'admin');
+                } else {
+                    $this->session->set_userdata('user', $r[1][0]);
+                    $this->session->set_userdata('role', 'user');
                 }
                 redirect(base_url('LandingController'));
             } else {
