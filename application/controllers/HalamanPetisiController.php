@@ -7,15 +7,19 @@ class HalamanPetisiController extends CI_Controller {
         $this->load->model('HalamanPetisiModel');
     }
 
-    public function index(){
+    public function index($id){
+        $where = array('id_petisi' => $id);
         $content['main_view'] = 'HalamanPetisiView';
+        $content['data'] = $this->HalamanPetisiModel->detailPetisi('halaman_petisi', $where);
         $this->load->view('Body', $content);
     }
 
-    public function getPetisi($id) {
+    public function donasi($id) {
         $where = array('id_petisi' => $id);
-        $data = $this->HalamanPetisiModel->detailPetisi('halaman_petisi', $where)->result();
-        echo json_encode($data);
+        $content['main_view'] = 'DonasiView';
+        $content['data'] = $id;
+        $content['title'] = $this->HalamanPetisiModel->detailPetisi('halaman_petisi', $where)->judul_petisi;
+        $this->load->view('Body', $content);
     }
 }
 

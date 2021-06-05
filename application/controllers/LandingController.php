@@ -12,12 +12,8 @@ class LandingController extends CI_Controller {
 	public function index()
 	{
         $content['main_view'] = 'LandingView';
+				$content['data'] = $this->LandingModel->getAllPetisi();
         $this->load->view('Body', $content);
-	}
-
-	public function getAllPetisi() {
-		$data = $this->LandingModel->getAllPetisi();
-		echo json_encode($data);
 	}
 }
 ?>
