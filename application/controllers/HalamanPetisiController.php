@@ -8,18 +8,32 @@ class HalamanPetisiController extends CI_Controller {
     }
 
     public function index($id){
-        $where = array('id_petisi' => $id);
         $content['main_view'] = 'HalamanPetisiView';
-        $content['data'] = $this->HalamanPetisiModel->detailPetisi('halaman_petisi', $where);
+        $content['data'] = $this->HalamanPetisiModel->detailPetisi($id);
         $this->load->view('Body', $content);
     }
 
     public function donasi($id) {
-        $where = array('id_petisi' => $id);
         $content['main_view'] = 'DonasiView';
         $content['data'] = $id;
-        $content['title'] = $this->HalamanPetisiModel->detailPetisi('halaman_petisi', $where)->judul_petisi;
+        $content['title'] = $this->HalamanPetisiModel->detailPetisi($id)->judul_petisi;
         $this->load->view('Body', $content);
+    }
+
+    public function kirimDonasi() {
+        $data = array(
+            'jumlah_dana' => $this->input->post('jumlah_dana'),
+            'tgl_transaksi' => date('Y-m-d'),
+            'username' => $this->session->userdata('username')
+        );
+
+        $id_petisi = $this->input->post('id_petisi');
+        $dana_terkumpul =  $this->HalamanPetisiModel->detailPetisi($id_petisi)->dana_terkumpul + $this->input->post('jumlah_dana');
+
+        $this->HalamanPetisiModel->insertRiwayatTransaksi($data);
+        $this->HalamanPetisiModel->insertCek($id_petisi);
+        $this->HalamanPetisiModel->updatePetisi($id_petisi, $dana_terkumpul);
+        redirect('HalamanPetisiController/index/'.$id_petisi);
     }
 }
 
