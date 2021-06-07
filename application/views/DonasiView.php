@@ -14,8 +14,8 @@
   <i class="far fa-credit-card text-primary" style="font-size: 6rem;"></i>
 </div>
 
-<form action="" method="post">
-  <input type="hidden" style="visibility: hidden;" value="<?= $data ?>" id="id_petisi">
+<form action="<?= site_url('HalamanPetisiController/kirimDonasi') ?>" method="post">
+  <input type="hidden" style="visibility: hidden;" value="<?= $data ?>" id="id_petisi" name="id_petisi">
   <div class="container-fluid">
     <div class="row">
       <div class="col-6">
@@ -28,8 +28,8 @@
           <input type="tel" class="form-control" id="no_hp" value="<?= $user['no_hp'] ?>" required>
         </div>
         <div class="mb-3">
-          <label for="jumlah_donasi" class="form-label">Jumlah Donasi</label>
-          <input type="number" class="form-control" id="jumlah_donasi" required>
+          <label for="jumlah_dana" class="form-label">Jumlah Donasi</label>
+          <input type="number" class="form-control" name="jumlah_dana" id="jumlah_dana" required>
         </div>
       </div>
       <div class="col-6">
