@@ -42,9 +42,11 @@ class InputPetisiController extends CI_Controller {
         redirect(base_url('ManagePetisiController'));
     }
 
+
     public function addPetisi($username){
         $id_petisi = $this->InputPetisiModel->getLastIdPetisi();
         $date = date('Y-m-d');
+
         $data_1 = array(
             'id_petisi' =>  $id_petisi,
             'judul_petisi' => $this->input->post('judul_petisi'),
@@ -56,7 +58,9 @@ class InputPetisiController extends CI_Controller {
         
         $data_2 = array(
             'id_petisi' =>  $id_petisi,
+
             'username' => $username
+
         );
         $this->InputPetisiModel->addPetisiHalamanPetisi($data_1);
         $this->InputPetisiModel->addPetisiMelihat($data_2);
