@@ -2,8 +2,13 @@
 class ManagePetisiModel extends CI_model {
     public function getAllPetisi($username) {
         $this->db->select('*');
-        $this->db->from('melihat');
-        $this->db->join('halaman_petisi','melihat.id_petisi = halaman_petisi.id_petisi','LEFT');
+        if ($this->session->userdata('role') == 'user') {
+            $this->db->from('melihat');
+            $this->db->join('halaman_petisi','melihat.id_petisi = halaman_petisi.id_petisi','LEFT');
+        } else {
+            $this->db->from('manage');
+            $this->db->join('halaman_petisi','manage.id_petisi = halaman_petisi.id_petisi','LEFT');
+        }
         $this->db->where('username', $username);
         return $this->db->get()->result_array();
     }

@@ -1,10 +1,9 @@
 
 <h1 class="text-center mt-3">Donasi Untuk Kesejahteraan Bersama</h1>
-<?php if ($this->session->userdata('username') == TRUE && $this->session->userdata('role') != 'admin') { ?>
+<?php if ($this->session->userdata('username') == TRUE) { ?>
     <div class="d-flex my-3">
         <a href="<?= base_url('ManagePetisiController') ?>" class="ms-auto me-3">Manage Petisi</a>
         <a href="<?= base_url('RiwayatTransaksiController') ?>">Riwayat Transaksi</a>
-
     </div>
 <?php } ?>
 <div id="container" class="d-flex justify-content-center flex-wrap align-items-stretch">
