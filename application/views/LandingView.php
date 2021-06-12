@@ -3,7 +3,9 @@
 <?php if ($this->session->userdata('username') == TRUE) { ?>
     <div class="d-flex my-3">
         <a href="<?= base_url('ManagePetisiController') ?>" class="ms-auto me-3">Manage Petisi</a>
-        <a href="<?= base_url('RiwayatTransaksiController') ?>">Riwayat Transaksi</a>
+        <?php if ($this->session->userdata('role') == 'user') { ?>
+            <a href="<?= base_url('RiwayatTransaksiController') ?>">Riwayat Transaksi</a>
+        <?php } ?>
     </div>
 <?php } ?>
 <div id="container" class="d-flex justify-content-center flex-wrap align-items-stretch">
