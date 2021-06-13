@@ -53,7 +53,7 @@ class InputPetisiController extends CI_Controller {
             'tgl_post' => $date,
             'kebutuhan_dana' => $this->input->post('kebutuhan_dana'),
             'deskripsi' => $this->input->post('deskripsi'),
-            'durasi_hari' => $this->getDurasi(time())
+            'durasi_hari' => $this->getDurasi($date)
         );
         
         $data_2 = array(
