@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 05, 2021 at 03:26 AM
+-- Generation Time: Jun 14, 2021 at 02:53 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -59,6 +59,7 @@ CREATE TABLE `akun` (
 INSERT INTO `akun` (`username`, `password`, `email`, `no_hp`) VALUES
 ('reykim', '12347', 'reykim@gmail.com', '0833'),
 ('tiwa', '12345', 'tiwa@gmail.com', '08211'),
+('user2', '12345', 'kajfhklahsdf', '20934'),
 ('wisnu', '12346', 'wisnu@gmail.com', '08222');
 
 -- --------------------------------------------------------
@@ -71,6 +72,20 @@ CREATE TABLE `cek` (
   `id_riwayat` int(10) NOT NULL,
   `id_petisi` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cek`
+--
+
+INSERT INTO `cek` (`id_riwayat`, `id_petisi`) VALUES
+(34, 1),
+(40, 1),
+(43, 1),
+(44, 1),
+(35, 2),
+(41, 2),
+(42, 2),
+(45, 3);
 
 -- --------------------------------------------------------
 
@@ -93,8 +108,15 @@ CREATE TABLE `halaman_petisi` (
 --
 
 INSERT INTO `halaman_petisi` (`id_petisi`, `judul_petisi`, `tgl_post`, `kebutuhan_dana`, `dana_terkumpul`, `deskripsi`, `durasi_hari`) VALUES
-(1, 'petisi 1', '2021-06-05', 1000000, 0, 'petisi 1', 18806),
-(2, 'petisi 2', '2021-06-05', 2000000, 0, 'petisi 2', 18807);
+(1, 'petisi 1', '2021-06-05', 1000000, 704000, 'petisi 1', 30),
+(2, 'petisi 2', '2021-06-05', 2000000, 504000, 'petisi 2', 25),
+(3, 'petisi 3', '2021-06-12', 10000000, 1000000, 'petisi 3', 10),
+(4, 'petisi 4', '2021-06-14', 10000000, 0, 'petisi 4', 30),
+(5, 'petisi 5', '2021-06-14', 5000000, 0, 'petisi 5', 50),
+(6, 'petisi 6', '2021-06-14', 5000000, 0, 'petisi 6', 12),
+(7, 'petisi 7', '2021-06-14', 20000000, 0, 'petisi 7', 1),
+(8, 'petisi 8', '2021-06-14', 15000000, 0, 'petisi 8', 5),
+(9, 'petisi 9', '2021-06-14', 10000000, 0, 'petisi 9', 9);
 
 -- --------------------------------------------------------
 
@@ -132,7 +154,14 @@ CREATE TABLE `melihat` (
 
 INSERT INTO `melihat` (`username`, `id_petisi`) VALUES
 ('reykim', 1),
-('reykim', 2);
+('reykim', 2),
+('reykim', 3),
+('reykim', 4),
+('reykim', 5),
+('user2', 6),
+('user2', 7),
+('user2', 8),
+('user2', 9);
 
 -- --------------------------------------------------------
 
@@ -146,6 +175,20 @@ CREATE TABLE `riwayat_transaksi` (
   `tgl_transaksi` date NOT NULL,
   `username` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `riwayat_transaksi`
+--
+
+INSERT INTO `riwayat_transaksi` (`id_riwayat`, `jumlah_dana`, `tgl_transaksi`, `username`) VALUES
+(34, 1000, '2021-06-07', 'reykim'),
+(35, 2000, '2021-06-07', 'user2'),
+(40, 3000, '2021-06-07', 'user2'),
+(41, 2000, '2021-06-07', 'reykim'),
+(42, 500000, '2021-06-07', 'user2'),
+(43, 600000, '2021-06-07', 'reykim'),
+(44, 100000, '2021-06-12', 'reykim'),
+(45, 1000000, '2021-06-14', 'reykim');
 
 -- --------------------------------------------------------
 
@@ -165,7 +208,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`nik`, `username`, `no_rekening`, `nama`) VALUES
-(2315534, 'reykim', '02384028403', 'Muhammad Rayhan Hakim');
+(2315534, 'reykim', '02384028403', 'Muhammad Rayhan Hakim'),
+(7241, 'user2', '19043', 'user 2');
 
 --
 -- Indexes for dumped tables
@@ -231,13 +275,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `halaman_petisi`
 --
 ALTER TABLE `halaman_petisi`
-  MODIFY `id_petisi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_petisi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `riwayat_transaksi`
 --
 ALTER TABLE `riwayat_transaksi`
-  MODIFY `id_riwayat` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id_riwayat` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- Constraints for dumped tables
